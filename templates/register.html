@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="auth-container">
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <h1>Create Account</h1>
+        </div>
+        
+        <p class="subtitle">Join thousands of users and start chatting today</p>
+        
+        <div id="errorMessage" class="error-message"></div>
+        
+        <form class="auth-form" id="registerForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" required autocomplete="username">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number (10 digits)</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" pattern="[0-9]{10}" title="Please enter a 10-digit mobile number">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required autocomplete="new-password">
+            </div>
+            
+            <button type="submit" class="btn-auth" id="submitBtn">
+                <span>Create account</span>
+            </button>
+            
+            <div class="divider">OR</div>
+            
+            <div class="social-auth">
+                <button type="button" class="btn-google">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <span>Continue with Google</span>
+                </button>
+            </div>
+        </form>
+        
+        <div class="auth-footer">
+            Already have an account? <a href="/">Log in</a>
+        </div>
+    </div>
+
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Assistant - Advanced Chatbot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Immediate redirect if not authenticated
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/';
+        }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Assistant</span>
+                </div>
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="fas fa-plus"></i>
+                New Chat
+            </button>
+            
+            <div class="conversations-list" id="conversationsList">
+                <div style="text-align: center; padding: 20px; color: gray;">No conversations yet</div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button class="clear-all-btn" id="clearAllBtn">
+                    <i class="fas fa-history"></i>
+                    Clear All Chats
+                </button>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile-container">
+                    <div class="user-info" id="userInfo">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="username">Guest</span>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-item" id="switchUserBtn">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Switch User</span>
+                        </div>
+                        <div class="dropdown-item" id="logoutBtnMain">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="settings-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Chat Area -->
+        <main class="main-content">
+            <header class="chat-header">
+                <button class="menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2 id="chatTitle">New Conversation</h2>
+                <div class="header-actions">
+                    <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="voice-mode-btn" id="voiceModeBtn" title="Voice Mode">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="clear-chat-btn" id="clearChatBtn" title="Clear Chat">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="welcome-screen">
+                    <div class="welcome-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h2>Welcome to AI Voice Assistant</h2>
+                    <p>Ask me anything! I can help with questions, calculations, weather, and more.</p>
+                    <div class="suggestions">
+                        <div class="suggestion-chip" data-msg="What's the weather like?">
+                            <i class="fas fa-cloud-sun"></i> Weather
+                        </div>
+                        <div class="suggestion-chip" data-msg="Calculate 15 + 27">
+                            <i class="fas fa-calculator"></i> Calculate
+                        </div>
+                        <div class="suggestion-chip" data-msg="Tell me a joke">
+                            <i class="fas fa-smile"></i> Joke
+                        </div>
+                        <div class="suggestion-chip" data-msg="Search for AI news">
+                            <i class="fas fa-search"></i> Search
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div id="attachmentPreview" class="attachment-preview" style="display: none;">
+                    <!-- Preview items will be added here -->
+                </div>
+                <div class="input-wrapper">
+                    <button class="attach-btn" id="attachBtn" title="Upload Document">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="file" id="fileInput" style="display: none" accept=".pdf,.txt,.md,.png,.jpg,.jpeg,.gif,.webp,.mp4,.webm">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Type your message here..."
+                        rows="1"
+                    ></textarea>
+                    <button class="voice-input-btn" id="voiceInputBtn" title="Voice Input">
+                        <i class="fas fa-microphone-alt"></i>
+                    </button>
+                    <button class="send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="recording-indicator" id="recordingIndicator" style="display: none;">
+                    <div class="recording-wave">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <span>Recording... Click to stop</span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>Theme</label>
+                        <select id="themeSelect">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>Auto-play voice responses</label>
+                        <input type="checkbox" id="autoPlayVoice">
+                    </div>
+                    <div class="setting-group">
+                        <label>Message font size</label>
+                        <input type="range" id="fontSize" min="12" max="20" value="14">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="logoutBtn">Logout</button>
+                    <button class="btn-primary" id="saveSettingsBtn">Save Settings</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="/static/js/voice.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>

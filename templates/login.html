@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="auth-container">
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <h1>Welcome Back</h1>
+        </div>
+        
+        <p class="subtitle">Enter your details to access your assistant</p>
+        
+        <div id="errorMessage" class="error-message"></div>
+        
+        <form class="auth-form" id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="username">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+            </div>
+            
+            <div class="forgot-password">
+                <a href="/forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn-auth" id="submitBtn">
+                <span>Continue</span>
+            </button>
+            
+            <div class="divider">OR</div>
+            
+            <div class="social-auth">
+                <button type="button" class="btn-google">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <span>Continue with Google</span>
+                </button>
+            </div>
+        </form>
+        
+        <div class="auth-footer">
+            Don't have an account? <a href="/register">Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        window.GOOGLE_CLIENT_ID = "{{ google_client_id }}";
+    </script>
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>
