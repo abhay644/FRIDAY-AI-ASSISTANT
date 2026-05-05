@@ -988,3 +988,11 @@ if __name__ == '__main__':
     print(f"Open http://localhost:5000 in your browser")
     print("=" * 50)
     app.run(debug=True, port=5000, host='0.0.0.0')
+
+app = Flask(__name__) # Yeh line shuruat mein honi chahiye
+
+# ... aapka baaki code ...
+
+# Aakhir mein sirf yeh rehne dein (vercel ke liye app.run ki zaroorat nahi hoti)
+if __name__ == "__main__":
+    app.run()
