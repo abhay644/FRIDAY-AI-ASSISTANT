@@ -47,3 +47,12 @@ A modern, responsive AI-powered voice assistant built with Flask, SQLite, and Op
 
 ## License
 MIT
+
+##Screenshots
+<img width="1899" height="916" alt="Screenshot 2026-05-04 153312" src="https://github.com/user-attachments/assets/2e454b60-b59e-498e-893c-47f937f4d66e" />
+<img width="1884" height="909" alt="Screenshot 2026-05-04 153352" src="https://github.com/user-attachments/assets/f196f3ea-6990-43cd-9000-e9bca13e9498" />
+<img width="1892" height="913" alt="Screenshot 2026-05-04 153334" src="https://github.com/user-attachments/assets/feddc120-7ff0-4865-b86a-82e92ed614c8" />
+<img width="1887" height="913" alt="Screenshot 2026-05-04 153419" src="https://github.com/user-attachments/assets/c6163474-ac58-4649-879c-099b2a37c729" />
+<img width="1902" height="870" alt="Screenshot 2026-05-04 153801" src="https://github.com/user-attachments/assets/8f5cb9cc-345c-45ae-ac28-acb30e56a2f9" />
+
+
